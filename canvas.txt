@@ -1,0 +1,128 @@
+Canvas
+
+var canvas=document.getElementById("myCanvas");
+var ctx=canvas.getContext('2d');
+
+Line:-
+ctx.moveTo(12,12);
+ctx.lineTo(20,20);
+ctx.stroke();
+
+Rectangle:-
+ctx.fillStyle='yellow';
+ctx.fillRect(10,10,60,60);
+ctx.strokeRect();
+
+Circle:-
+ctx.beginPath();
+ctx.arc(start,end,radius,startAngle,endAngle,clock/anticlock);
+
+Gradients:-
+ctx.createLinearGradient(x1,y1,x2,y2);
+or
+var grd=ctx.createCircularGradient(x1,y1,r1,x2,y2,r2);
+grd.addColorStop(0,'red');
+grd.addColorStop(0,'green');
+grd.addColorStop(0,'yellow');
+
+ctx.fillStyle=grd;
+ctx.fillRect(0,0,400,400)
+
+
+
+Some properties
+
+ctx.fillStyle="color"
+ctx.strokeStyle="color"
+ctx.fillRect()
+
+--------------BEZIER and QUADRATIC CURVES--------------
+
+quadraticCurveTo(cp1x, cp1y, x, y)
+    Quadratic curve drawing from current position to x, y using cp as reference.
+
+bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)
+    Bezier curve drawing from current position to x, y using cp as reference.
+
+
+--------------Some line properties------------------
+
+ctx.lineWidth=12;
+
+var lineCap = ['butt', 'round', 'square'];
+ctx.lineCap=lineCap[0];
+
+var lineJoin = ['round', 'bevel', 'miter'];
+ctx.lineJoin=lineJoin[0];
+
+-----------------Line Dashes-------------------------
+
+ctx.setlineDash([10,2,50,2])        -> array of line width, space width
+ctx.lineDashOffset=2                -> for setting the offset of the line
+
+--------------------Image Pattern---------------
+
+var img=new Image();
+img src='/path';
+image onload=function(){
+    var pattern=ctx.createPattern(img,'repeat');
+    ctx.fillStyle=pattern;
+    ctx.fillRect(100,100,150,300);
+}
+
+---------------------Shadows---------------------
+
+ctx.sha
+
+
+-------------------Properies-----------------
+The current values of the following attributes: strokeStyle, 
+fillStyle, globalAlpha, lineWidth, lineCap, lineJoin, miterLimit, 
+lineDashOffset, shadowOffsetX, shadowOffsetY, shadowBlur, 
+shadowColor, globalCompositeOperation, font, textAlign, 
+textBaseline, direction, imageSmoothingEnabled.
+
+
+----------------------TRANSFORMATIONS----------------------
+
+Saving and restoring state:-
+.save(), .restore();
+.translate(x,y);
+.rotate(angle in rad);
+
+----------------------Animations in Canvas-------------------
+setInterval(function, delay)
+setTimeout(function, delay)
+requestAnimationFrame(callback)     :Tells the browser that you wish to perform an animation and requests that the browser call a specified 
+                                    function to update an animation before the next repaint.
+
+cancel  AnimationFrame(callback)
+
+
+
+
+
+
+
+
+
+
+
+
+
+function doRebounce(arr){
+    if(!arr[2]){arr[0]+=5;}
+    else if(arr[1]){arr[0]-=5;} 
+    if(!arr[3]){arr[1]+=5;}
+    else if(arr[3]){arr[1]-=5;} 
+    
+}
+function rebounce(arr){
+    if(arr[0]+arr[2]/2>innerWidth){arr[3]=true;}
+    else if(arr[0]-arr[2]/2<0){arr[3]=false;}
+    if(arr[1]+arr[2]/2>innerHeight){arr[4]=true;}
+    else if(arr[1]-arr[2]/2<0){arr[4]=false;}
+
+    doRebounce([cx,cy,hitX,hitY])
+    
+}
